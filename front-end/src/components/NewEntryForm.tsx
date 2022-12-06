@@ -5,7 +5,7 @@ export default function NewEntryForm() {
         content: "",
         files: [],
     });
-    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setSnippet({
             title: "",
@@ -13,6 +13,7 @@ export default function NewEntryForm() {
             files: [],
         });
         console.log(snippet);
+        // console.log(process.env.XYZ)
     }
     return (
         <>
