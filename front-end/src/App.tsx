@@ -5,7 +5,8 @@ import Dashboard from "./components/Dashboard"
 
 function App() {
     const [count, setCount] = useState(0);
-
+// const xyz = process.env.XYZ
+// console.log(xyz)
     return (
         <div className="App">
             <Dashboard />
