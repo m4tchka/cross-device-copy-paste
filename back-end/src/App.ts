@@ -24,10 +24,10 @@ mongoose
     .then(() => {
         if (process.env.NODE_ENV != "test") {
             app.listen(port, () => {
-                console.log(`Listening on port ${port}`);
+                console.log(`Connected to DB.\nListening on port ${port}`);
             });
         }
     })
     .catch((err) => console.error(err));
-
+mongoose.set(`strictQuery`, true);
 export default app;
