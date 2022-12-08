@@ -15,14 +15,14 @@ router.delete("/:id", (req, res) => {
     return res.json(`Delete snippet endpoint, ${req.params.id}`);
 });
 router.put("/:id", (req, res) => {
-    console.log(
-        "Replace specific snippet:",
-        req.params.id,
-        "with",
-        req.body.snippet
-    );
+    // console.log(
+    //     "Replace specific snippet:",
+    //     req.params.id,
+    //     "with",
+    //     req.body.snippet
+    // );
     return res.json(
-        `Update snippet endpoint, ${req.params.id}\nNew snippet: ${req.body.snippet}`
+        `Update snippet endpoint, ${req.params.id}\nNew snippet: ${(req.body.snippet)}`
     );
 });
 export default router;
