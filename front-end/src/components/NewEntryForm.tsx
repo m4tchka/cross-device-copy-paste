@@ -18,7 +18,7 @@ export default function NewEntryForm() {
     return (
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <h1>Snippet Form</h1>
+                <h3>Snippet Form</h3>
                 <div>
                     <label htmlFor="title">Snippet title: </label>
                     <input

@@ -1,10 +1,10 @@
 import NewEntryForm from "./NewEntryForm";
+import SnippetDisplay from "./SnippetDisplay";
 export default function Dashboard() {
-    
     return (
         <>
             {/* <div className="border-solid border-2 border-sky-500 bg-slate-900 p-8"> */}
-            <p className="font-bold underline">TAILWIND TEST</p>
+            <h2 className="font-bold underline">Dashboard</h2>
             <section>
                 <NewEntryForm />
             </section>
@@ -13,6 +13,7 @@ export default function Dashboard() {
                 <p>test</p>
                 <p>test</p>
                 <p>test</p>
+                <SnippetDisplay />
             </section>
             {/* </div> */}
         </>
