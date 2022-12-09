@@ -2,15 +2,13 @@ import express from "express";
 import {
     getAllSnippets,
     createNewSnippet,
+    getOneSnippet,
 } from "../controllers/snippetController";
 const router = express.Router();
 
 router.get("/", getAllSnippets);
 router.post("/", createNewSnippet);
-router.get("/:id", (req, res) => {
-    console.log("Specific snippet:", req.params.id);
-    return res.json(`Get specific snippet endpoint, ${req.params.id}`);
-});
+router.get("/:id", getOneSnippet);
 router.delete("/:id", (req, res) => {
     return res.json(`Delete snippet endpoint, ${req.params.id}`);
 });

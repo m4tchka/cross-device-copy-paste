@@ -1,7 +1,7 @@
 # GET http://127.0.0.1:5174  
 # homepage
 
-GET http://127.0.0.1:5174/snippets 
+# GET http://127.0.0.1:5174/snippets 
 # all snippets
 
 # POST http://127.0.0.1:5174/snippets
@@ -13,7 +13,7 @@ GET http://127.0.0.1:5174/snippets
 # }
 # # post snippet
 
-# GET http://127.0.0.1:5174/snippets/777 
+GET http://127.0.0.1:5174/snippets/63935a10739e24fda9c08b6d 
 # get specific snippet
 
 # DELETE http://127.0.0.1:5174/snippets/778 

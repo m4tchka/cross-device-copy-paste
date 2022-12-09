@@ -1,6 +1,12 @@
 import Snippet from "../models/snippets";
 import express from "express";
-// Get all
+import mongoose from "mongoose";
+
+/* interface Snippet {
+    Title: number;
+    Content: string;
+    Files: string[];
+} */
 export const getAllSnippets = async (
     req: express.Request,
     res: express.Response
@@ -8,8 +14,21 @@ export const getAllSnippets = async (
     const allSnippets = await Snippet.find({}).sort({ createdAt: -1 });
     res.status(200).json(allSnippets);
 };
-// Get 1
-// Add 1
+export const getOneSnippet = async (
+    req: express.Request,
+    res: express.Response
+) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res
+            .status(404)
+            .json({ error: "No snippet found ... Invalid id" });
+    }
+    const specificSnippet = await Snippet.findById(req.params.id);
+    if (!specificSnippet) {
+        return res.status(404).json({ error: "No snippet found ... Incorrect id" });
+    }
+    res.status(200).json(specificSnippet);
+};
 export const createNewSnippet = async (
     req: express.Request,
     res: express.Response
@@ -22,5 +41,7 @@ export const createNewSnippet = async (
         res.status(400).json({ error: err.message });
     }
 };
-// Delete 1
-// Replace 1
+export const deleteOneSnippet = async (
+    req: express.Request,
+    res: express.Response
+) => {};
