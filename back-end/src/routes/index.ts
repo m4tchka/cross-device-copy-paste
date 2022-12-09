@@ -1,19 +1,12 @@
 import express from "express";
-import Snippet from "../models/snippets";
+import {
+    getAllSnippets,
+    createNewSnippet,
+} from "../controllers/snippetController";
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    return res.json("Get all snippets endpoint");
-});
-router.post("/", async (req, res) => {
-    const { title, content, files } = req.body;
-    try {
-        const newSnippet = await Snippet.create({ title, content, files });
-        res.status(200).json(newSnippet);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
-});
+router.get("/", getAllSnippets);
+router.post("/", createNewSnippet);
 router.get("/:id", (req, res) => {
     console.log("Specific snippet:", req.params.id);
     return res.json(`Get specific snippet endpoint, ${req.params.id}`);

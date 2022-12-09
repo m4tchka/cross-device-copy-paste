@@ -1,19 +1,28 @@
 # GET http://127.0.0.1:5174  
 # homepage
 
-# GET http://127.0.0.1:5174/snippets 
+GET http://127.0.0.1:5174/snippets 
 # all snippets
 
-# POST http://127.0.0.1:5174/snippets 
-# post snippet
+# POST http://127.0.0.1:5174/snippets
+# content-type: application/json
+
+# {
+#     "title":"xyz",
+#     "content":"Lorem ipsum dolor sit amet, consectetur ... "
+# }
+# # post snippet
 
 # GET http://127.0.0.1:5174/snippets/777 
 # get specific snippet
+
 # DELETE http://127.0.0.1:5174/snippets/778 
 # delete specific snippet
 
-PUT http://127.0.0.1:5174/snippets/777
-{
-    "snippet":"xyz",
-}
+# PUT http://127.0.0.1:5174/snippets/777
+# content-type: application/json
+
+# {
+#     "snippet":"xyz"
+# }
 
