@@ -1,3 +1,5 @@
-export default function SnippetDisplay() {
-    return <div>Snippets</div>;
+export default function SnippetDisplay({x}) {
+    return <div className="">Snippets
+        
+    </div>;
 }

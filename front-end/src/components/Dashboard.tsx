@@ -1,6 +1,22 @@
+import { useState, useEffect } from "react";
 import NewEntryForm from "./NewEntryForm";
 import SnippetDisplay from "./SnippetDisplay";
 export default function Dashboard() {
+    const [currentSnippets, setCurrentSnippets] = useState([]);
+    useEffect(() => {
+        // const fetchSnippets = async () => {
+        //     const response = await fetch(import.meta.env.VITE_SNIPPET_API_URL);
+        //     const data = await response.json();
+        //     setCurrentSnippets(data);
+        // };
+        // fetchSnippets();
+        (async function fetchSnippets() {
+            const response = await fetch(import.meta.env.VITE_SNIPPET_API_URL);
+            const data = await response.json();
+            setCurrentSnippets(data);
+        })();
+    }, []);
+
     return (
         <>
             {/* <div className="border-solid border-2 border-sky-500 bg-slate-900 p-8"> */}
@@ -8,12 +24,15 @@ export default function Dashboard() {
             <section>
                 <NewEntryForm />
             </section>
+            {/*             <button
+                onClick={() => {
+                    console.log("Current snippets:", currentSnippets);
+                }}
+            >CONSOLE LOG CURRENT SNIPPETS</button> */}
             <section>
                 <p>test</p>
                 <p>test</p>
-                <p>test</p>
-                <p>test</p>
-                <SnippetDisplay />
+                <SnippetDisplay currentSnippets={currentSnippets}/>
             </section>
             {/* </div> */}
         </>

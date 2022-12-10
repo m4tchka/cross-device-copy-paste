@@ -12,8 +12,15 @@ export default function NewEntryForm() {
             content: "",
             files: [],
         });
-        console.log(snippet);
-        // console.log(process.env.XYZ)
+        let response = await fetch("http://localhost:5174/snippets", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(snippet),
+        });
+        let data = await response.json();
+        console.log(data);
     }
     return (
         <>
