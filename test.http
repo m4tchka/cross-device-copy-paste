@@ -4,13 +4,12 @@
 # GET http://127.0.0.1:5174/snippets 
 # all snippets
 
-# POST http://127.0.0.1:5174/snippets
-# content-type: application/json
+POST http://127.0.0.1:5174/snippets
+content-type: application/json
 
-# {
-#     "title":"xyz",
-#     "content":"Lorem ipsum dolor sit amet, consectetur ... "
-# }
+{
+    "title":"xyz",
+}
 # # post snippet
 
 GET http://127.0.0.1:5174/snippets/63935a10739e24fda9c08b6d 

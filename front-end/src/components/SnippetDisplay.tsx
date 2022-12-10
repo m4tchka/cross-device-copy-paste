@@ -4,7 +4,7 @@ export interface SnippetType {
     files?: string[];
     _id: string;
 }
-interface SnippetsProp {
+export interface SnippetsProp {
     SnippetArray: SnippetType[];
 }
 

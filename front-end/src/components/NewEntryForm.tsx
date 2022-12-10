@@ -1,7 +1,15 @@
 import { useState } from "react";
-
 type Props = {
-    updateSnippetList: (value: []) => void;
+    updateSnippetList: React.Dispatch<
+        React.SetStateAction<
+            {
+                title: string;
+                content: string;
+                files: string[];
+                _id: string;
+            }[]
+        >
+    >;
 };
 export default function NewEntryForm({ updateSnippetList }: Props) {
     const [snippet, setSnippet] = useState({
@@ -19,14 +27,25 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
             },
             body: JSON.stringify(snippet),
         });
-        let data = await response.json();
+        let data = (await response.json()) as
+            | Promise<
+                  {
+                      title: string;
+                      content: string;
+                      files: string[];
+                      _id: string;
+                  }[]
+              >
+            | Promise<{ error: string }>;
         if (!response.ok) {
-            setError(data.error);
+            setError(error);
         } else {
             setError(null);
             console.log("New snippet added: ", data);
         }
-        // updateSnippetList(prev:{}[]=>[...prev])
+        let updatedResponse = await fetch("http://localhost:5174/snippets");
+        let updatedData = await updatedResponse.json();
+        updateSnippetList(updatedData);
         setSnippet({
             title: "",
             content: "",
