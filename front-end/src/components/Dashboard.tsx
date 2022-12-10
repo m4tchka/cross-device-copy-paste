@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import NewEntryForm from "./NewEntryForm";
 import SnippetDisplay from "./SnippetDisplay";
+import { SnippetType } from "./SnippetDisplay";
 export default function Dashboard() {
     const [currentSnippets, setCurrentSnippets] = useState([]);
     useEffect(() => {
@@ -22,7 +23,7 @@ export default function Dashboard() {
             {/* <div className="border-solid border-2 border-sky-500 bg-slate-900 p-8"> */}
             <h2 className="font-bold underline">Dashboard</h2>
             <section>
-                <NewEntryForm />
+                <NewEntryForm updateSnipppetFunc={setCurrentSnippets} />
             </section>
             {/*             <button
                 onClick={() => {
@@ -32,7 +33,7 @@ export default function Dashboard() {
             <section>
                 <p>test</p>
                 <p>test</p>
-                <SnippetDisplay currentSnippets={currentSnippets}/>
+                <SnippetDisplay SnippetArray={currentSnippets} />
             </section>
             {/* </div> */}
         </>

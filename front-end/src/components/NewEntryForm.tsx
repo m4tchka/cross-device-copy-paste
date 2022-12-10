@@ -1,17 +1,15 @@
 import { useState } from "react";
-export default function NewEntryForm() {
+export default function NewEntryForm(
+    updateSnipppetFunc: React.Dispatch<React.SetStateAction<never[]>>/* (value: Array<object>) => void */
+) {
     const [snippet, setSnippet] = useState({
         title: "",
         content: "",
         files: [],
     });
+    const [error, setError] = useState(null);
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setSnippet({
-            title: "",
-            content: "",
-            files: [],
-        });
         let response = await fetch("http://localhost:5174/snippets", {
             method: "POST",
             headers: {
@@ -20,7 +18,18 @@ export default function NewEntryForm() {
             body: JSON.stringify(snippet),
         });
         let data = await response.json();
-        console.log(data);
+        if (!response.ok) {
+            setError(data.error);
+        } else {
+            setError(null);
+            console.log("New snippet added: ", data);
+        }
+        setSnippet({
+            title: "",
+            content: "",
+            files: [],
+        });
+        // console.log(data);
     }
     return (
         <>
@@ -53,6 +62,7 @@ export default function NewEntryForm() {
                     <input type="file" />
                 </div>
                 <input type="Submit"></input>
+                {error && <div>{error}</div>}
             </form>
         </>
     );
