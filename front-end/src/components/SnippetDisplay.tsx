@@ -2,7 +2,7 @@ export interface SnippetType {
     title: string;
     content: string;
     files?: string[];
-    _id?: string;
+    _id: string;
 }
 interface SnippetsProp {
     SnippetArray: SnippetType[];

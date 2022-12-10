@@ -3,7 +3,14 @@ import NewEntryForm from "./NewEntryForm";
 import SnippetDisplay from "./SnippetDisplay";
 import { SnippetType } from "./SnippetDisplay";
 export default function Dashboard() {
-    const [currentSnippets, setCurrentSnippets] = useState([]);
+    const [currentSnippets, setCurrentSnippets] = useState<
+        Array<{
+            title: string;
+            content: string;
+            files: string[];
+            _id:string;
+        }>
+    >([]);
     useEffect(() => {
         // const fetchSnippets = async () => {
         //     const response = await fetch(import.meta.env.VITE_SNIPPET_API_URL);
@@ -23,7 +30,7 @@ export default function Dashboard() {
             {/* <div className="border-solid border-2 border-sky-500 bg-slate-900 p-8"> */}
             <h2 className="font-bold underline">Dashboard</h2>
             <section>
-                <NewEntryForm updateSnipppetFunc={setCurrentSnippets} />
+                <NewEntryForm updateSnippetList={setCurrentSnippets} />
             </section>
             {/*             <button
                 onClick={() => {

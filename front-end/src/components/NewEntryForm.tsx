@@ -1,7 +1,9 @@
 import { useState } from "react";
-export default function NewEntryForm(
-    updateSnipppetFunc: React.Dispatch<React.SetStateAction<never[]>>/* (value: Array<object>) => void */
-) {
+
+type Props = {
+    updateSnippetList: (value: []) => void;
+};
+export default function NewEntryForm({ updateSnippetList }: Props) {
     const [snippet, setSnippet] = useState({
         title: "",
         content: "",
@@ -24,6 +26,7 @@ export default function NewEntryForm(
             setError(null);
             console.log("New snippet added: ", data);
         }
+        // updateSnippetList(prev:{}[]=>[...prev])
         setSnippet({
             title: "",
             content: "",
