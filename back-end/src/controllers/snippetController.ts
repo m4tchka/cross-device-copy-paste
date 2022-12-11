@@ -2,11 +2,6 @@ import Snippet from "../models/snippets";
 import express from "express";
 import mongoose from "mongoose";
 
-/* interface Snippet {
-    Title: number;
-    Content: string;
-    Files: string[];
-} */
 export const getAllSnippets = async (
     req: express.Request,
     res: express.Response
@@ -40,6 +35,7 @@ export const createNewSnippet = async (
         const newSnippet = await Snippet.create({ title, content, files });
         res.status(200).json(newSnippet);
     } catch (err) {
+        console.log("ERROR: ", err);
         res.status(400).json({ error: err.message });
     }
 };
@@ -62,7 +58,6 @@ export const deleteOneSnippet = async (
     }
     res.status(400).json(deletedSnippet);
 };
-
 export const updateOneSnippet = async (
     req: express.Request,
     res: express.Response

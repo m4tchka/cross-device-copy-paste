@@ -17,7 +17,7 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
         content: "",
         files: [],
     });
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | undefined>(undefined);
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         let response = await fetch("http://localhost:5174/snippets", {
@@ -27,20 +27,20 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
             },
             body: JSON.stringify(snippet),
         });
-        let data = (await response.json()) as
-            | Promise<
-                  {
-                      title: string;
-                      content: string;
-                      files: string[];
-                      _id: string;
-                  }[]
-              >
-            | Promise<{ error: string }>;
+        let data: {
+            title: string;
+            content: string;
+            files: string[];
+            _id: string;
+            error?: string;
+        } = await response.json();
+
+        console.log("---------DATA---------", data.error);
         if (!response.ok) {
-            setError(error);
+            console.log("ERROR >>>>", data.error);
+            setError(data.error);
         } else {
-            setError(null);
+            setError(undefined);
             console.log("New snippet added: ", data);
         }
         let updatedResponse = await fetch("http://localhost:5174/snippets");
@@ -51,10 +51,9 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
             content: "",
             files: [],
         });
-        // console.log(data);
     }
     return (
-        <>
+        <div className="flex flex-col justify-between h-full flex-1">
             <form onSubmit={(e) => handleSubmit(e)}>
                 <h3>Snippet Form</h3>
                 <div>
@@ -67,6 +66,7 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
                             setSnippet({ ...snippet, title: e.target.value });
                         }}
                         value={snippet.title}
+                        className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                 </div>
                 <div>
@@ -78,14 +78,17 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
                             setSnippet({ ...snippet, content: e.target.value });
                         }}
                         value={snippet.content}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                 </div>
                 <div>
                     <input type="file" />
                 </div>
                 <input type="Submit"></input>
-                {error && <div>{error}</div>}
             </form>
-        </>
+            <div>
+                <p>ERROR: {error}</p>
+            </div>
+        </div>
     );
 }

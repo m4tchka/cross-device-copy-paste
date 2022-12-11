@@ -2,7 +2,9 @@
 
 ## Motivation:
 
-A small SPA project for myself to be able to share website links, code snippets, and/ or files, across different devices, without having to use emails, bluetooth transfers, or typing search terms out again.
+A small SPA project for myself to be able to send website links, code snippets, and/ or files, across different devices, without having to use emails, bluetooth transfers, or typing search terms out again.
+(Also a project for practicing TypeScript)
+
 
 Built with: MongoDB, Express, React(TS), NodeJS; as well as Vite/react-router-dom
 
