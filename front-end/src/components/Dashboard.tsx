@@ -15,16 +15,14 @@ export default function Dashboard() {
 
     return (
         <>
-            {/* <div className="border-solid border-2 border-sky-500 bg-slate-900 p-8"> */}
             <h2 className="font-bold underline">Dashboard</h2>
-            <div className="flex">
+            <div className="flex justify-between">
                 <section>
                     <NewEntryForm updateSnippetList={setCurrentSnippets} />
                 </section>
                 <section>
                     <SnippetDisplay SnippetArray={currentSnippets} />
                 </section>
-                {/* </div> */}
             </div>
         </>
     );
