@@ -4,11 +4,40 @@ export interface SnippetType {
     files?: string[];
     _id: string;
 }
-export interface SnippetsProp {
+export interface SnippetsProps {
     SnippetArray: SnippetType[];
+    updateSnippetList: React.Dispatch<
+        React.SetStateAction<
+            {
+                title: string;
+                content: string;
+                files: string[];
+                _id: string;
+            }[]
+        >
+    >;
 }
 
-export default function SnippetDisplay({ SnippetArray }: SnippetsProp) {
+export default function SnippetDisplay({
+    SnippetArray,
+    updateSnippetList,
+}: SnippetsProps) {
+    async function handleDelete(id: string) {
+        const response = await fetch(
+            `${import.meta.env.VITE_SNIPPET_API_URL}/${id}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        const data = await response.json();
+
+        let updatedResponse = await fetch(import.meta.env.VITE_SNIPPET_API_URL);
+        let updatedData = await updatedResponse.json();
+        updateSnippetList(updatedData);
+    }
     return (
         <div className="">
             {SnippetArray.map((elem, ind) => {
@@ -26,6 +55,9 @@ export default function SnippetDisplay({ SnippetArray }: SnippetsProp) {
                         ) : (
                             <></>
                         )}
+                        <button onClick={() => handleDelete(elem._id)}>
+                            DELETE SNIPPET
+                        </button>
                     </div>
                 );
             })}

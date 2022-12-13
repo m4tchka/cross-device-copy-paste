@@ -20,7 +20,7 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
     const [error, setError] = useState<string | undefined>(undefined);
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        let response = await fetch("http://localhost:5174/snippets", {
+        let response = await fetch(import.meta.env.VITE_SNIPPET_API_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
             setError(undefined);
             console.log("New snippet added: ", data);
         }
-        let updatedResponse = await fetch("http://localhost:5174/snippets");
+        let updatedResponse = await fetch(import.meta.env.VITE_SNIPPET_API_URL);
         let updatedData = await updatedResponse.json();
         updateSnippetList(updatedData);
         setSnippet({
@@ -54,10 +54,13 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
     }
     return (
         <div className="flex flex-col justify-between h-full flex-1">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form
+                className="bg-green2 border-none p-2 rounded text-offwhite"
+                onSubmit={(e) => handleSubmit(e)}
+            >
                 <h3>Snippet Form</h3>
                 <div>
-                    <label htmlFor="title">Snippet title: </label>
+                    <label className="block" htmlFor="title">Snippet title: </label>
                     <input
                         type="text"
                         name="title"
@@ -66,11 +69,11 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
                             setSnippet({ ...snippet, title: e.target.value });
                         }}
                         value={snippet.title}
-                        className="block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block p-2 mt-2.5 mb-5 w-full border-2 border-solid rounded box-border"/* "block w-full rounded-md border-gray-300 pl-7 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" */
                     />
                 </div>
                 <div>
-                    <label htmlFor="text-content">Snippet: </label>
+                    <label className="block" htmlFor="text-content">Snippet: </label>
                     <textarea
                         name="text-content"
                         placeholder="content"
@@ -78,16 +81,16 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
                             setSnippet({ ...snippet, content: e.target.value });
                         }}
                         value={snippet.content}
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="block p-2 mt-2.5 mb-5 w-full border-2 border-solid rounded box-border"/* "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" */
                     />
                 </div>
                 <div>
-                    <input type="file" />
+                    <input className="block" type="file" />
                 </div>
-                <input type="Submit"></input>
+                <input className="rounded" type="Submit"></input>
             </form>
-            <div>
-                <p>ERROR: {error}</p>
+            <div className="p-2.5 bg-offwhite border-2 border-solid border-error text-error rounded my-20px">
+                ERROR: {error}
             </div>
         </div>
     );

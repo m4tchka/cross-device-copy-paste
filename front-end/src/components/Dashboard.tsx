@@ -21,7 +21,7 @@ export default function Dashboard() {
                     <NewEntryForm updateSnippetList={setCurrentSnippets} />
                 </section>
                 <section>
-                    <SnippetDisplay SnippetArray={currentSnippets} />
+                    <SnippetDisplay SnippetArray={currentSnippets} updateSnippetList={setCurrentSnippets} />
                 </section>
             </div>
         </>
