@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 function App() {
     // TODO: Something about react-router-dom
     return (
-        <div className="App">
+        <div className="App bg-bg m-0">
             <Dashboard />
         </div>
     );

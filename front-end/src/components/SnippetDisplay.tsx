@@ -44,10 +44,14 @@ export default function SnippetDisplay({
                 return (
                     <div
                         key={elem._id}
-                        className="border-solid border-2 border-sky-500 bg-slate-900 p-8"
+                        className="bg-offwhite rounded my-5 mx-auto p-5 relative shadow-custom1" /* "border-solid border-2 border-sky-500 bg-slate-900 p-8" */
                     >
-                        <h2>Title: {elem.title}</h2>
-                        <p>Contents: {elem.content}</p>
+                        <h4 className="mb-2.5 text-lg text-green2">
+                            Title: {elem.title}
+                        </h4>
+                        <p className="text-base text-customText">
+                            Contents: {elem.content}
+                        </p>
                         {elem.files ? (
                             elem.files.map((file) => {
                                 return <img src={file}></img>;
@@ -55,8 +59,8 @@ export default function SnippetDisplay({
                         ) : (
                             <></>
                         )}
-                        <button onClick={() => handleDelete(elem._id)}>
-                            DELETE SNIPPET
+                        <button className="material-symbols-outlined absolute top-5 right-5 cursor-pointer p-1.5 rounded text-gray-700" onClick={() => handleDelete(elem._id)}>
+                            delete
                         </button>
                     </div>
                 );

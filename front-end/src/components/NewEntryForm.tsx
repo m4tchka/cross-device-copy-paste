@@ -87,7 +87,7 @@ export default function NewEntryForm({ updateSnippetList }: Props) {
                 <div>
                     <input className="block" type="file" />
                 </div>
-                <input className="rounded" type="Submit"></input>
+                <input className="rounded cursor-pointer" type="Submit"></input>
             </form>
             <div className="p-2.5 bg-offwhite border-2 border-solid border-error text-error rounded my-20px">
                 ERROR: {error}
